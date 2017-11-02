@@ -1,0 +1,27 @@
+{
+  "name": "frolf-micro",
+  "version": "1.0.0",
+  "description": "Micro libary test",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stibay/Frolf-micro.git"
+  },
+  "keywords": [
+    "micro",
+    "libary",
+    "test"
+  ],
+  "author": "Stian Bay <stian.bay@outlook.com> (https://frolf.live/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stibay/Frolf-micro/issues"
+  },
+  "homepage": "https://github.com/stibay/Frolf-micro#readme",
+  "dependencies": {
+    "unique-random-array": "1.0.0"
+  }
+}
