@@ -1,6 +1,6 @@
 {
   "name": "frolf-micro",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Micro libary test",
   "main": "src/index.js",
   "scripts": {
