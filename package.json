@@ -2,13 +2,16 @@
   "name": "frolf-micro",
   "version": "0.0.0-development",
   "description": "Micro libary test",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "commit": "git-cz",
-    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "report-coverage": "codecov -t 23a6d16e-b329-4fbd-893c-f205472d57e5",
-    "test": "mocha src/index.test.js -w",
-    "test:single": "istanbul cover -x **/*.test.js node_modules/mocha/bin/_mocha -- -R spec src/index.test.js",
+    "watch:test": "npm t -- -w",
+    "test": "mocha src/index.test.js --compilers js:babel-register",
+    "cover": "nyc npm t",
+    "prebuild": "rimraf dist",
+    "build": "babel --copy-files --out-dir dist --ignore *.test.js src",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -20,6 +23,10 @@
     "libary",
     "test"
   ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "author": "Stian Bay <stian.bay@outlook.com> (https://frolf.live/)",
   "license": "MIT",
   "bugs": {
@@ -30,6 +37,10 @@
     "unique-random-array": "1.0.0"
   },
   "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-stage-2": "6.24.1",
+    "babel-register": "6.26.0",
     "chai": "4.1.2",
     "codecov": "3.0.0",
     "commitizen": "2.9.6",
@@ -37,6 +48,8 @@
     "ghooks": "2.0.0",
     "istanbul": "0.4.5",
     "mocha": "4.0.1",
+    "nyc": "11.3.0",
+    "rimraf": "2.6.2",
     "semantic-release": "^8.2.0"
   },
   "czConfig": {
@@ -44,7 +57,16 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run test:single && npm run check-coverage"
+      "pre-commit": "npm run cover && npm run check-coverage"
+    },
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
     }
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2"
+    ]
   }
 }
